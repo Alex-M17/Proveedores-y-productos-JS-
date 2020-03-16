@@ -1,0 +1,85 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9 mt-4">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th>
+                  <input type="checkbox" [(ngModel)]="btnCheck">
+                </th>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Telefono</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let proveedor of ProveedorArray" class="table-light">
+                <td>
+                  <input type="checkbox" [checked]="proveedor == selectedProveedor || btnCheck" disabled>
+                </td>  
+                <td scope="row">
+                  <span class="badge badge-primary">{{proveedor.id}}</span>   
+                </td>
+                <td>{{proveedor.name}}</td>
+                <td>{{proveedor.dir}}</td>                
+                <td>{{proveedor.tel}}</td>
+                <td>
+                  <button (click)="OpenEdit(proveedor)" id="edit" class="border-0" style="background: transparent;">
+                    <i class="fa fa-edit fa-lg"></i>
+                  </button>
+                  <button (click)="Drop(proveedor)" id="drop" class="border-0" style="background: transparent;">
+                    <i class="fa fa-trash fa-lg text-danger"></i>
+                  </button>
+                </td>        
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="card mt-4 mb-4">
+          <div class="card-body">
+            <div class="card-title pb-2">
+              <h3 class="float-left">Guarda un nuevo proveedor</h3> 
+              <input type="button" (click)="AddOrEdit()" id="btnSubmit"
+                class="btn btn-primary float-right" value="Guardar">
+              <input type="button" *ngIf="btnCheck" class="btn btn-danger float-right mr-2" 
+                (click)="DropAll()" id="btnEliminar" value="Eliminar">
+            </div>
+            <div class="input-group mt-5 mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-user" style="font-size: 18px"></i>
+                </div>
+              </div>
+              <input type="text" [(ngModel)]="selectedProveedor.name" 
+                placeholder="Nombre del proveedor" class="form-control">
+            </div>
+            <div class="input-group mt-2 mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-map-marker" style="font-size: 21px;"></i>
+                </div>
+              </div>
+              <input type="text" [(ngModel)]="selectedProveedor.dir" 
+                placeholder="Direccion del proveedor" class="form-control">
+            </div>
+            <div class="input-group mt-2 mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-phone" style="font-size: 16px"></i>
+                </div>
+              </div>
+              <input type="text" [(ngModel)]="selectedProveedor.tel"
+                placeholder="Telefono del proveedor" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
